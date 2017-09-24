@@ -12,7 +12,6 @@ Sample pillars
 Full-featured example:
 
 .. code-block:: yaml
-  parameters:
     pm2:
       enabled: True
       user: root
@@ -40,7 +39,6 @@ Full-featured example:
           ignore_watch: "node_modules"
           node_args:
             - "--debug=7001"
-
 
 Read more
 =========

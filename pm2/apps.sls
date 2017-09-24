@@ -20,8 +20,8 @@
       {%- do start_cmd.append("pm2 start " ~ app.main_file ~ " --name=" ~ app_name) %}
 
       {#- Add options #}
-      {%- if app.user is defined %}{%- do start_cmd.append("-u=" ~ app.user) %}{%- endif %}
-      {%- if app.instances is defined %}{%- do start_cmd.append("-i=" ~ app.instances) %}{%- endif %}
+      {%- if app.user is defined %}{%- do start_cmd.append("--user=" ~ app.user) %}{%- endif %}
+      {%- if app.instances is defined %}{%- do start_cmd.append("--instances " ~ app.instances) %}{%- endif %}
       {%- if app.log_file is defined %}{%- do start_cmd.append("--log=" ~ app.log_file) %}{%- endif %}
       {%- if app.output_log_file is defined %}{%- do start_cmd.append("--output=" ~ app.output_log_file) %}{%- endif %}
       {%- if app.error_log_file is defined %}{%- do start_cmd.append("--error=" ~ app.error_log_file) %}{%- endif %}

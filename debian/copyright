@@ -1,0 +1,16 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: salt-formula-pm2
+Upstream-Contact: Jiri Hybek <jiri@hybek.cz>
+Source: https://github.com/tcpcloud/salt-formula-pm2
+
+Files: *
+Copyright: 2017 Jiri Hybek
+License: Apache 2
+  Copyright (C) 2017 Jiri Hybek
+  Copyright (C) 2014-2015 tcp cloud
+  .
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  .
+  On a Debian system you can find a copy of this license in
+  /usr/share/common-licenses/Apache-2.0.

@@ -1,0 +1,64 @@
+# Sample PM2 configuration
+
+classes:
+- service.pm2.single
+parameters:
+
+  # PM2 Process Manager
+  pm2:
+    # If PM2 is enabled
+    enabled: true
+    # User to run PM2 as
+    user: root
+    # Home directory
+    home_dir: /srv/pm2
+
+    # PM2 Applications
+    apps:
+      my_app:
+        # If app should be running
+        enabled: True
+        # If delete app and re-create it again on every salt run
+        restart: True
+        # Script main file (required)
+        main_file: /srv/node/myapp/index.js
+        # Directory to run pm2 start (required)
+        cwd: /srv/node/myapp
+        # User to start process as
+        user: node
+        # Script arguments
+        args:
+          - "--some=arg"
+        # Environment variables
+        env:
+          MY_VAR: value
+        # Instance count (for clustering)
+        instances: 1
+        # Generic log file path (both output and error)
+        log_file: /var/log/myapp.log
+        # Only output log file path
+        output_log_file: /var/log/myapp_output.log
+        # Only error log file path
+        error_log_file: /var/log/myapp_error.log
+        # Pid file path
+        pid_file: /var/run/myapp.pid
+        # Interpreter to run script with (if different than Node, eg.: python / bash)
+        interpreter: node
+        # If to start process in foreground
+        no_daemon: False
+        # If to merge logs from multple instances
+        merge_logs: True
+        # If to restart when source files change
+        watch: True
+        # Folder / files to be excluded from watch, could be a specific name or regex - e.g. "test node_modules "some scripts"
+        ignore_watch: "node_modules"
+        # Arguments to pass to NodeJS process
+        node_args:
+          - "--debug=7001"
+
+      # Example of another app that will not be created or be removed if exists
+      another_app:
+        enabled: False
+        main_file: /srv/another_app
+        cwd: /srv/another_app
+        interpreter: python

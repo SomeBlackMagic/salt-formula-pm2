@@ -1,0 +1,5 @@
+{% set pm2 = salt['grains.filter_by']({
+    'Debian': {},
+    'RedHat': {},
+    'MacOS': {}
+}, merge=salt['pillar.get']('pm2')) %}

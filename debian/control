@@ -1,0 +1,14 @@
+Source: salt-formula-pm2
+Maintainer: Jiri Hybek <jiri@hybek.cz>
+Section: admin
+Priority: optional
+Build-Depends: salt-master, python, python-yaml, debhelper (>= 9)
+Standards-Version: 3.9.6
+Vcs-Browser: https://github.com/jirihybek/salt-formula-pm2
+Vcs-Git: https://github.com/jirihybek/salt-formula-pm2.git
+
+Package: salt-formula-pm2
+Architecture: all
+Depends: ${misc:Depends}, salt-master, reclass
+Description: NodeJS Process Manager PM2 formula
+ Install PM2 and control NodeJS processes.

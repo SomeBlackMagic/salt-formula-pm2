@@ -1,0 +1,5 @@
+salt-formula-pm2 (0.1) trusty; urgency=medium
+
+  * Initial release
+
+ -- Jiri Hybek <jiri@hybek.cz>  Sat, 24 Jun 2017 23:23:41 +0200

@@ -1,0 +1,4 @@
+name: "pm2"
+version: "0.1"
+source: "https://github.com/jirihybek/salt-formula-pm2"
+

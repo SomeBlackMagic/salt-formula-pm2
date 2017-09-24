@@ -12,6 +12,7 @@ Sample pillars
 Full-featured example:
 
 .. code-block:: yaml
+
     pm2:
       enabled: True
       user: root

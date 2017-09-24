@@ -23,6 +23,7 @@ Full-featured example:
           restart: True
           main_file: /srv/node/myapp/index.js
           cwd: /srv/node/myapp
+          create_cwd_dir: True
           user: node
           args:
             - "--some=arg"

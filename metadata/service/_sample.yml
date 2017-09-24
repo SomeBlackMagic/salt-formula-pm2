@@ -24,6 +24,8 @@ parameters:
         main_file: /srv/node/myapp/index.js
         # Directory to run pm2 start (required)
         cwd: /srv/node/myapp
+        # If to automatically create cwd directory - default: True
+        create_cwd_dir: True
         # User to start process as
         user: node
         # Script arguments

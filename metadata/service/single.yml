@@ -2,7 +2,6 @@ applications:
 - pm2
 classes:
 - service.pm2.support
-- service.orientdb.environment
 parameters:
   pm2:
     enabled: true

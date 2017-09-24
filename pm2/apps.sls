@@ -36,6 +36,17 @@
       {#- Add arguments #}
       {%- if app.args is defined %}{%- do start_cmd.append("-- " ~ app.args|join(" ")) %}{%- endif %}
 
+      {#- Ensure CWD dir #}
+      {%- if app.get('create_cwd_dir', True) %}
+
+{{ app.cwd }}:
+  file.directory:
+  - user: {{ app.get('user', pm2.get('user', 'root')) }}
+  - mode: 755
+  - makedirs: True
+
+      {%- endif %}
+
       {#- Delete if restart #}
       {%- if app.restart is defined and app.restart %}
 

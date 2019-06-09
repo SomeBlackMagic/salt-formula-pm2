@@ -44,7 +44,7 @@ pm2_{{ user }}_startup_run:
 pm2_{{ user }}_install_module_{{ name }}:
   cmd.run:
     - name: 'pm2 install {{ name }}'
-    - user: '{{ user }}'
+    - runas: '{{ user }}'
     - env:
         - PM2_HOME: '{{ home_dir }}/.pm2'
           {# config pm2 module for instance #}
@@ -52,7 +52,7 @@ pm2_{{ user }}_install_module_{{ name }}:
 pm2_{{ user }}_install_module_{{ name }}_set_{{key}}:
   cmd.run:
     - name: 'pm2 set {{ name }}:{{ key }}  {{ value }}'
-    - user: '{{ user }}'
+    - runas: '{{ user }}'
     - env:
         - PM2_HOME: '{{ home_dir }}/.pm2'
 
@@ -65,7 +65,7 @@ pm2_{{ user }}_install_module_{{ name }}_set_{{key}}:
 pm2_{{ user }}_install_complition:
   cmd.run:
     - name: 'pm2 completion install'
-    - user: '{{ user }}'
+    - runas: '{{ user }}'
     - env:
         - PM2_HOME: '{{ home_dir }}/.pm2'
         - SHELL: '{{ instance.completion_shell }}'

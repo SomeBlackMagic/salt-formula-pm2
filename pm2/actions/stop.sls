@@ -20,7 +20,7 @@
 pm2_{{ instance.user }}_stop:
   cmd.run:
     - name: 'pm2 stop {{ instance.ecosystem_file_path }} {{ process }}'
-    - user: '{{ instance.user }}'
+    - runas: '{{ instance.user }}'
     - env:
         - PM2_HOME: '{{ instance.home_dir }}/.pm2'
     {%- endif %}

@@ -20,14 +20,14 @@
 pm2_{{ instance.user }}_start_or_reload:
   cmd.run:
     - name: 'pm2 startOrReload {{ instance.ecosystem_file_path }} --update-env {{ process }}'
-    - user: '{{ instance.user }}'
+    - runas: '{{ instance.user }}'
     - env:
         - PM2_HOME: '{{ instance.home_dir }}/.pm2'
 
 pm2_{{ instance.user }}_save_config:
   cmd.run:
     - name: 'pm2 save'
-    - user: '{{ instance.user }}'
+    - runas: '{{ instance.user }}'
     - env:
         - PM2_HOME: '{{ instance.home_dir }}/.pm2'
     {%- endif %}

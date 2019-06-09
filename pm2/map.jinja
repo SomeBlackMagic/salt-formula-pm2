@@ -1,5 +1,17 @@
 {% set pm2 = salt['grains.filter_by']({
-    'Debian': {},
-    'RedHat': {},
-    'MacOS': {}
-}, merge=salt['pillar.get']('pm2')) %}
+  'default': {
+    'enabled': 'True',
+    'version': 'latest',
+    'default_instance': 'root'
+  },
+  'Arch': {
+  },
+  'Debian': {
+
+  },
+  'RedHat': {
+
+  },
+}, merge=pillar.get('pm2', {}), base='default') %}
+
+

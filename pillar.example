@@ -1,0 +1,47 @@
+pm2:
+  enabled: True
+  version: "latest"
+  default_instance: 'root'
+  instances:
+    - user: root
+      startup: True
+      completion_install: True
+      completion_shell: '/bin/bash'
+      keymetrics_active: Flase # todo. Implement connect
+      keymetrics_public: ''
+      keymetrics_secret: ''
+      home_dir: /root/
+      ecosystem_file_path: '/root/ecosystem.yaml'
+      modules:
+        pm2-logrotate:
+          max_size: "10M"
+          retain: "30"
+          compress: "false"
+          dateFormat: "YYYY-MM-DD_HH-mm-ss"
+          workerInterval: "30"
+          rotateInterval: "0 0 * * *"
+          rotateModule: "true"
+      apps:
+        - name: "test-app"
+          script: "test.js"
+          instances: 1
+          exec_mode: "fork"
+          source_map_support: True
+          max_memory_restart: "2G"
+          error_file: "/root/logs/node-err.log"
+          out_file: "/root/logs/node-out.log"
+          cwd: "/root/"
+          watch: false
+          merge_logs: true
+          env:
+            DEBUG: 'app.*'
+          #Control flow
+          min_uptime: 10000 # (string) min uptime of the app to be considered started
+          listen_timeout: 100000 # (number) time in ms before forcing a reload if app not listening
+          kill_timeout: '10000' # (number) time in milliseconds before sending a final SIGKILL
+          wait_ready: true # (boolean) Instead of reload waiting for listen event wait for process.send(‘ready’)
+          max_restarts: '5' # number of consecutive unstable restarts (less than 1sec interval or custom time via min_uptime)
+          restart_delay: '5000' # (number) time to wait before restarting a crashed app (in milliseconds). defaults to 0.
+          autorestart: true # (boolean) true by default. if false PM2 will not restart your app if it crashes or ends peacefully
+          vizion: false # (boolean) true by default. if false PM2 will start without vizion features (versioning control metadatas)
+          force: false #(boolean) defaults to false. if true you can start the same script several times which is usually not allowed by PM2

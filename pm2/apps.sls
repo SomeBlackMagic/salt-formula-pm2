@@ -3,11 +3,15 @@
 
 {%- if pm2.instances is defined %}
 
-  {%- for instance in pm2.instances %}
+  {%- for user, instance in pm2.instances.items() %}
 
-  {%- set user = 'root' %}
-  {%- if (instance.user is defined) %}{%- set user = instance.user  %}{%- endif %}
-  {% set apps = dict(apps=instance.apps) %}
+    {%- set apps = [] -%}
+
+    {%- for alias, item in instance.apps.items() %}
+      {%- do apps.append(item) -%}
+    {%- endfor %}
+
+   {% set apps_dst = dict(apps=apps) %}
 
 pm2_{{ user }}_setup_ecosystem:
   file.serialize:
@@ -19,7 +23,11 @@ pm2_{{ user }}_setup_ecosystem:
     - create: True
     - merge_if_exists: False
     - formatter: yaml
-    - dataset: {{ apps }}
+    - dataset: {{ apps_dst }}
+
+
 
   {%- endfor %}
 {%- endif %}
+
+

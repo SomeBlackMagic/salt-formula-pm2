@@ -7,20 +7,17 @@ pm2_install:
 
   {%- if pm2.instances is defined %}
 
-    {%- for instance in pm2.instances %}
+    {%- for user, instance in pm2.instances.items() %}
 
       {%- set startup_cmd = ["pm2 startup --user=" ~ pm2.get('user', 'root')] %}
       {%- if pm2.home_dir is defined %}{%- do startup_cmd.append("--hp=" ~ pm2.home_dir) %}{%- endif %}
       {%- if pm2.startup_platform is defined %}{%- do startup_cmd.append(pm2.startup_platform) %}{%- endif %}
 
-      {%- set user = 'root' %}
-      {%- if (instance.user is defined) %}{%- set user = instance.user  %}{%- endif %}
-
       {%- set home_dir = '/root/' %}
       {%- if (instance.home_dir is defined) %}{%- set home_dir = instance.home_dir  %}{%- endif %}
 
       {%- if (instance.startup is defined) and (instance.startup is not none) and (instance.startup) %}
-        {%- set startup_cmd = "pm2 startup --no-daemon --user=" ~ user ~ " --hp=" ~ home_dir %}
+      {%- set startup_cmd = "pm2 startup --no-daemon --user=" ~ user ~ " --hp=" ~ home_dir %}
 
 pm2_{{ user }}_startup_script:
   cmd.run:

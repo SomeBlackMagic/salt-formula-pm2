@@ -14,20 +14,20 @@
 
 {%- if pm2.instances is defined  %}
 
-  {%- for instance in pm2.instances %}
+  {%- for user, instance in pm2.instances.items() %}
 
-    {%- if instance.user ==  selected_instance %}
-pm2_{{ instance.user }}_start_or_reload:
+    {%- if user ==  selected_instance %}
+pm2_{{ user }}_start_or_reload:
   cmd.run:
     - name: 'pm2 startOrReload {{ instance.ecosystem_file_path }} --update-env {{ process }}'
-    - runas: '{{ instance.user }}'
+    - runas: '{{ user }}'
     - env:
         - PM2_HOME: '{{ instance.home_dir }}/.pm2'
 
-pm2_{{ instance.user }}_save_config:
+pm2_{{ user }}_save_config:
   cmd.run:
     - name: 'pm2 save'
-    - runas: '{{ instance.user }}'
+    - runas: '{{ user }}'
     - env:
         - PM2_HOME: '{{ instance.home_dir }}/.pm2'
     {%- endif %}

@@ -14,13 +14,13 @@
 
 {%- if pm2.instances is defined  %}
 
-  {%- for instance in pm2.instances %}
+  {%- for user, instance in pm2.instances.items() %}
 
-    {%- if instance.user ==  selected_instance %}
-pm2_{{ instance.user }}_stop:
+    {%- if user ==  selected_instance %}
+pm2_{{ user }}_stop:
   cmd.run:
     - name: 'pm2 stop {{ instance.ecosystem_file_path }} {{ process }}'
-    - runas: '{{ instance.user }}'
+    - runas: '{{ user }}'
     - env:
         - PM2_HOME: '{{ instance.home_dir }}/.pm2'
     {%- endif %}
